@@ -18,7 +18,7 @@ public:
             for (int j = 0; j <c; j++)
             {
                 if(matrix[i][j]==0){
-                    // belongs to first row then use the markers place
+                    // belongs to first row then use row marker to mark
                     if(i==0){
                         row=true;
                     }
@@ -26,11 +26,11 @@ public:
                     else{
                         matrix[i][0]=0;
                     }
-                    // 
+                    //belongs to the first column then use the col marker 
                     if(j==0){
                         col=true;
                     }
-                    // 
+                    // else directly mark the corresponding reference column pointer
                     else{
                           matrix[0][j]=0;
                     }
@@ -39,7 +39,7 @@ public:
             }
             
         }
-
+//         traverse for all reference row elements and make the corresponding columns zeros
         for (int i = 1; i < c; i++)
         {
             if(matrix[0][i]==0){
@@ -51,6 +51,8 @@ public:
             }
 
         }
+        
+//         traverse for all reference column elements and make the corresponding rows zeros
 
         for (int i = 1; i < r; i++)
         {
@@ -63,6 +65,8 @@ public:
             }
 
         }
+        
+//         use the pointers to make the first row or column as zeroes at the end
 
         if(row==true){
             for (int i = 0; i < c; i++)
