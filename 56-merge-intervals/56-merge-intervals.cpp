@@ -2,45 +2,28 @@ class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals){
 
-        stack<vector<int>> ans;
-        
+        vector<vector<int>> ans;
 
         sort(intervals.begin(),intervals.end());
 
-        for(auto x:intervals){
-            if(ans.empty()){
-                ans.push(x);
-            }
+        ans.push_back(intervals[0]);
 
-            else{
+        for (int i = 1; i < intervals.size(); i++)
+        {
+            vector<int> temp;
 
-                auto y=ans.top();
+            temp=ans.back();
 
-                if(y[0]<=x[0]&&x[0]<=y[1]){
-                    y[1]=max(y[1],x[1]);
+            if(temp[1]<intervals[i][0]) ans.push_back(intervals[i]);
 
-                    ans.pop();
-                    ans.push(y);
-                }
-                
-                else{
-                    ans.push(x);
-                }
-
-            }
-
+            else ans.back()[1] = max(ans.back()[1],intervals[i][1]);
         }
 
-        vector<vector<int>> answer;
+        return ans;
+        
 
-        while(!ans.empty()){
-            answer.push_back(ans.top());
-            ans.pop();
-        }
 
-        reverse(answer.begin(),answer.end());
-
-        return answer;
 
     }
 };
+
