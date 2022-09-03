@@ -1,27 +1,20 @@
+#define rep(i,l,r) for(int i=l;i<r;i++)
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
+    vector<int> twoSum(vector<int>& a, int x) {
+        vector<int> ans;
         unordered_map<int,int> mpp;
-        int a,b;
-
-        int n=nums.size();
-        
-        for (int i = 0; i < n; i++)
-        {
-            if(mpp.find(target-nums[i])!=mpp.end()){
-                a=mpp[target-nums[i]];
-                b=i;
+        rep(i,0,a.size()){
+            if(mpp.find(x-a[i])!=mpp.end()){
+                ans.push_back(mpp[x-a[i]]);
+                ans.push_back(i);
                 break;
             }
             else{
-                mpp[nums[i]]=i;
+                mpp[a[i]]=i;
             }
-        }
+        }    return ans;
 
-        vector<int> ans;
-        ans.push_back(a);
-        ans.push_back(b);
-
-        return ans;
     }
+    
 };
